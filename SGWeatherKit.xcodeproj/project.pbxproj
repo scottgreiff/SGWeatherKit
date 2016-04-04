@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F9C92161CB2B32A00928048 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9C92151CB2B32A00928048 /* Alamofire.framework */; };
 		D2932D691CB298AB00E8C893 /* SGWeatherKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2932D681CB298AB00E8C893 /* SGWeatherKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2932D701CB298AB00E8C893 /* SGWeatherKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2932D651CB298AB00E8C893 /* SGWeatherKit.framework */; };
 		D2932D751CB298AB00E8C893 /* SGWeatherKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2932D741CB298AB00E8C893 /* SGWeatherKitTests.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F9C92151CB2B32A00928048 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D2932D651CB298AB00E8C893 /* SGWeatherKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGWeatherKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2932D681CB298AB00E8C893 /* SGWeatherKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGWeatherKit.h; sourceTree = "<group>"; };
 		D2932D6A1CB298AB00E8C893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9C92161CB2B32A00928048 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,11 +53,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F9C92141CB2B31700928048 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F9C92151CB2B32A00928048 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D2932D5B1CB298AB00E8C893 = {
 			isa = PBXGroup;
 			children = (
 				D2932D671CB298AB00E8C893 /* SGWeatherKit */,
 				D2932D731CB298AB00E8C893 /* SGWeatherKitTests */,
+				5F9C92141CB2B31700928048 /* Frameworks */,
 				D2932D661CB298AB00E8C893 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -314,6 +326,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SGWeatherKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -330,6 +346,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SGWeatherKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -378,6 +398,7 @@
 				D2932D7B1CB298AB00E8C893 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2932D7C1CB298AB00E8C893 /* Build configuration list for PBXNativeTarget "SGWeatherKitTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +407,7 @@
 				D2932D7E1CB298AB00E8C893 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
