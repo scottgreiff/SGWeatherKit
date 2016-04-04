@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F9C92161CB2B32A00928048 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9C92151CB2B32A00928048 /* Alamofire.framework */; };
+		5F9C921C1CB2E1F400928048 /* WeatherKitAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */; };
+		5F9C921F1CB2E5B300928048 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F9C92151CB2B32A00928048 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2932D691CB298AB00E8C893 /* SGWeatherKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2932D681CB298AB00E8C893 /* SGWeatherKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2932D701CB298AB00E8C893 /* SGWeatherKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2932D651CB298AB00E8C893 /* SGWeatherKit.framework */; };
 		D2932D751CB298AB00E8C893 /* SGWeatherKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2932D741CB298AB00E8C893 /* SGWeatherKitTests.swift */; };
@@ -23,8 +25,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5F9C921E1CB2E59A00928048 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F9C921F1CB2E5B300928048 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5F9C92151CB2B32A00928048 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherKitAgent.swift; sourceTree = "<group>"; };
 		D2932D651CB298AB00E8C893 /* SGWeatherKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGWeatherKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2932D681CB298AB00E8C893 /* SGWeatherKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGWeatherKit.h; sourceTree = "<group>"; };
 		D2932D6A1CB298AB00E8C893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,8 +80,8 @@
 		D2932D5B1CB298AB00E8C893 = {
 			isa = PBXGroup;
 			children = (
-				D2932D671CB298AB00E8C893 /* SGWeatherKit */,
-				D2932D731CB298AB00E8C893 /* SGWeatherKitTests */,
+				D2932D671CB298AB00E8C893 /* Source */,
+				D2932D731CB298AB00E8C893 /* Tests */,
 				5F9C92141CB2B31700928048 /* Frameworks */,
 				D2932D661CB298AB00E8C893 /* Products */,
 			);
@@ -80,21 +96,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D2932D671CB298AB00E8C893 /* SGWeatherKit */ = {
+		D2932D671CB298AB00E8C893 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				D2932D681CB298AB00E8C893 /* SGWeatherKit.h */,
 				D2932D6A1CB298AB00E8C893 /* Info.plist */,
+				5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */,
 			);
+			name = Source;
 			path = SGWeatherKit;
 			sourceTree = "<group>";
 		};
-		D2932D731CB298AB00E8C893 /* SGWeatherKitTests */ = {
+		D2932D731CB298AB00E8C893 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D2932D741CB298AB00E8C893 /* SGWeatherKitTests.swift */,
 				D2932D761CB298AB00E8C893 /* Info.plist */,
 			);
+			name = Tests;
 			path = SGWeatherKitTests;
 			sourceTree = "<group>";
 		};
@@ -137,6 +156,7 @@
 				D2932D6B1CB298AB00E8C893 /* Sources */,
 				D2932D6C1CB298AB00E8C893 /* Frameworks */,
 				D2932D6D1CB298AB00E8C893 /* Resources */,
+				5F9C921E1CB2E59A00928048 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -206,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9C921C1CB2E1F400928048 /* WeatherKitAgent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +343,7 @@
 		D2932D7A1CB298AB00E8C893 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -329,6 +351,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(SRCROOT)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SGWeatherKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -336,12 +359,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.codaitpartners.SGWeatherKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		D2932D7B1CB298AB00E8C893 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -349,6 +374,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(SRCROOT)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SGWeatherKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -362,6 +388,7 @@
 		D2932D7D1CB298AB00E8C893 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/**";
 				INFOPLIST_FILE = SGWeatherKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codaitpartners.SGWeatherKitTests;
@@ -372,6 +399,7 @@
 		D2932D7E1CB298AB00E8C893 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/**";
 				INFOPLIST_FILE = SGWeatherKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codaitpartners.SGWeatherKitTests;

@@ -6,31 +6,70 @@
 //  Copyright © 2016 Scott Alan Greiff. All rights reserved.
 //
 
+import CoreLocation
 import XCTest
+
 @testable import SGWeatherKit
 
 class SGWeatherKitTests: XCTestCase {
     
+    var agent: WeatherKitAgent!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        self.agent = WeatherKitAgent(apiKey: "195ca018929c41a89f286e0910a5da77")
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.agent = nil
+        
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testAgentReturned() {
+        XCTAssertNotNil(self.agent)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testInit() {
+        XCTAssertEqual(agent.apiKey, "195ca018929c41a89f286e0910a5da77")
+        XCTAssertEqual(agent.apiVersion, "2.5")
+    }
+    
+    func testGetWeatherForLatLon() {
+        XCTAssertNotNil(self.agent)
+        
+        let expectation = expectationWithDescription("currentWeatherByCoordinate")
+
+        agent.currentWeather(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794)) { result in
+            let url = result.response()?.URL!.absoluteString
+            let data = result.data()! as! Dictionary<String, AnyObject>
+            XCTAssertNotNil(url)
+            XCTAssertNotNil(data)
+            XCTAssertEqual("http://api.openweathermap.org/data/2.5/weather?lat=39.961176&lon=-82.998794&APPID=195ca018929c41a89f286e0910a5da77", url!)
+            XCTAssertNotNil(data["name"] as? String)
+            expectation.fulfill()
         }
+        
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
     
+    func testGetForecastForLatLon() {
+        XCTAssertNotNil(self.agent)
+        
+        let expectation = expectationWithDescription("dailyForecastByCoordinate")
+
+        agent.dailyForecast(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794)) { result in
+            let url = result.response()?.URL!.absoluteString
+            let data = result.data()! as! Dictionary<String, AnyObject>
+            let cityDict = data["city"]! as! Dictionary<String,AnyObject>
+            XCTAssertNotNil(url)
+            XCTAssertNotNil(data)
+            XCTAssertEqual("http://api.openweathermap.org/data/2.5/forecast/daily?lat=39.961176&lon=-82.998794&APPID=195ca018929c41a89f286e0910a5da77", url!)
+            XCTAssertNotNil(cityDict["name"] as? String)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(10, handler: nil)
+    }
 }
