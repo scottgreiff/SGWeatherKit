@@ -14,7 +14,7 @@ import CoreLocation
  
  The agent needs to be initialized with an API key that can be obtained from openweathermap.org.
  */
-public struct WeatherKitAgent {
+public final class WeatherKitAgent {
     
     // MARK: Properties 
     
@@ -28,13 +28,13 @@ public struct WeatherKitAgent {
     static let basePath = "http://api.openweathermap.org/data/"
     
     public enum Result {
-        case Success(NSURLResponse!, NSDictionary!)
+        case Success(NSURLResponse!, City!)
         case Error(NSURLResponse!, NSError!)
         
-        public func data() -> NSDictionary? {
+        public func data() -> City? {
             switch self {
-            case .Success(_, let dictionary):
-                return dictionary
+            case .Success(_, let city):
+                return city
             case .Error(_, _):
                 return nil
             }
@@ -72,6 +72,11 @@ public struct WeatherKitAgent {
     
     // MARK: Get current weather data
     
+    /**
+     Gets the current weather conditions given the location in the form of CLLocationCoordiate2D
+     
+     :param: coordinate CLLocationCoordinate2D
+     */
     public func currentWeather(coordinate: CLLocationCoordinate2D, callback: (Result) -> ()) {
         let coordinateString = "lat=\(coordinate.latitude)&lon=\(coordinate.longitude)"
         call("/weather?\(coordinateString)", callback: callback)
@@ -79,11 +84,15 @@ public struct WeatherKitAgent {
     
     // MARK: Get daily forecast
     
+    /**
+     Gets the weather forecast given the location in the form of CLLocationCoordiate2D
+     
+     :param: coordinate CLLocationCoordinate2D
+     */
     public func dailyForecast(coordinate: CLLocationCoordinate2D, callback: (Result) -> ()) {
         call("/forecast/daily?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)", callback: callback)
     }
     
-    // MARK: -
     // MARK: Call openweather.org API
     
     private func call(method: String, callback: (Result) -> ()) {
@@ -93,17 +102,20 @@ public struct WeatherKitAgent {
 
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
             var error: NSError? = error
-            var dictionary: NSDictionary?
-            
+            let dictionary: NSDictionary?
+            var city: City?
+
             if let data = data {
                 do {
                     dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as? NSDictionary
+                    city = City.parseFromDictionary(dictionary as! Dictionary<String, AnyObject>)
                 } catch let e as NSError {
                     error = e
                 }
             }
+            
             currentQueue?.addOperationWithBlock {
-                var result = Result.Success(response, dictionary)
+                var result = Result.Success(response, city)
                 if error != nil {
                     result = Result.Error(response, error)
                 }

@@ -43,11 +43,11 @@ class SGWeatherKitTests: XCTestCase {
 
         agent.currentWeather(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794)) { result in
             let url = result.response()?.URL!.absoluteString
-            let data = result.data()! as! Dictionary<String, AnyObject>
+            let city = result.data()
             XCTAssertNotNil(url)
-            XCTAssertNotNil(data)
+            XCTAssertNotNil(city)
             XCTAssertEqual("http://api.openweathermap.org/data/2.5/weather?lat=39.961176&lon=-82.998794&APPID=195ca018929c41a89f286e0910a5da77", url!)
-            XCTAssertNotNil(data["name"] as? String)
+            XCTAssertNotNil(city!.name as String)
             expectation.fulfill()
         }
         
@@ -61,12 +61,11 @@ class SGWeatherKitTests: XCTestCase {
 
         agent.dailyForecast(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794)) { result in
             let url = result.response()?.URL!.absoluteString
-            let data = result.data()! as! Dictionary<String, AnyObject>
-            let cityDict = data["city"]! as! Dictionary<String,AnyObject>
+            let city = result.data()
             XCTAssertNotNil(url)
-            XCTAssertNotNil(data)
+            XCTAssertNotNil(city)
             XCTAssertEqual("http://api.openweathermap.org/data/2.5/forecast/daily?lat=39.961176&lon=-82.998794&APPID=195ca018929c41a89f286e0910a5da77", url!)
-            XCTAssertNotNil(cityDict["name"] as? String)
+            XCTAssertNotNil(city!.name as String)
             expectation.fulfill()
         }
         
