@@ -97,7 +97,7 @@ public final class WeatherKitAgent {
     // MARK: Call openweather.org API
 
     private func call(method: String, callback: (Result) -> ()) {
-        let url = Const.basePath + Const.apiVersion + method + "&APPID=\(apiKey)"
+        let url = Const.basePath + Const.apiVersion + method + "&APPID=\(apiKey)&units=imperial"
         let request = NSURLRequest(URL: NSURL(string: url)!)
         let currentQueue = NSOperationQueue.currentQueue()
 
