@@ -9,20 +9,20 @@
 import Foundation
 
 public class Wind {
-    var speed:Double!
-    var deg:Double!
-    
-    init(speed:Double, deg:Double){
+    var speed: Double!
+    var deg: Double!
+
+    init(speed: Double, deg: Double) {
         self.speed = speed;
-        self.deg   = deg;
+        self.deg = deg;
     }
 }
 
 extension Wind {
-    class func parseFromDictionary(dict: [String: AnyObject]) -> Wind {
+    class func parseFromDictionary(dict: [String:AnyObject]) -> Wind {
         let speed = dict["speed"]! as! Double
-        let deg   = dict["deg"]! as! Double
-        
+        let deg = dict["deg"]! as! Double
+
         return Wind(speed: speed, deg: deg)
     }
 }

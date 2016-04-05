@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F9C92161CB2B32A00928048 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9C92151CB2B32A00928048 /* Alamofire.framework */; };
 		5F9C921C1CB2E1F400928048 /* WeatherKitAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */; };
-		5F9C921F1CB2E5B300928048 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5F9C92151CB2B32A00928048 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5F9C92221CB308C100928048 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C92211CB308C100928048 /* City.swift */; };
 		5F9C92241CB308FB00928048 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C92231CB308FB00928048 /* Weather.swift */; };
 		5F9C92261CB309D700928048 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C92251CB309D700928048 /* Wind.swift */; };
 		5F9C92281CB309FC00928048 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C92271CB309FC00928048 /* Environment.swift */; };
+		D27AC4091CB32DE400684C22 /* WeatherListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27AC4081CB32DE400684C22 /* WeatherListItem.swift */; };
 		D2932D691CB298AB00E8C893 /* SGWeatherKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D2932D681CB298AB00E8C893 /* SGWeatherKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2932D701CB298AB00E8C893 /* SGWeatherKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2932D651CB298AB00E8C893 /* SGWeatherKit.framework */; };
 		D2932D751CB298AB00E8C893 /* SGWeatherKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2932D741CB298AB00E8C893 /* SGWeatherKitTests.swift */; };
@@ -29,26 +28,13 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		5F9C921E1CB2E59A00928048 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				5F9C921F1CB2E5B300928048 /* Alamofire.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		5F9C92151CB2B32A00928048 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherKitAgent.swift; sourceTree = "<group>"; };
 		5F9C92211CB308C100928048 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		5F9C92231CB308FB00928048 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		5F9C92251CB309D700928048 /* Wind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		5F9C92271CB309FC00928048 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		D27AC4081CB32DE400684C22 /* WeatherListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListItem.swift; sourceTree = "<group>"; };
 		D2932D651CB298AB00E8C893 /* SGWeatherKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SGWeatherKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2932D681CB298AB00E8C893 /* SGWeatherKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGWeatherKit.h; sourceTree = "<group>"; };
 		D2932D6A1CB298AB00E8C893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F9C92161CB2B32A00928048 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +65,6 @@
 		5F9C92141CB2B31700928048 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5F9C92151CB2B32A00928048 /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -89,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				5F9C92211CB308C100928048 /* City.swift */,
+				D27AC4081CB32DE400684C22 /* WeatherListItem.swift */,
 				5F9C92231CB308FB00928048 /* Weather.swift */,
 				5F9C92251CB309D700928048 /* Wind.swift */,
 				5F9C92271CB309FC00928048 /* Environment.swift */,
@@ -176,7 +161,6 @@
 				D2932D6B1CB298AB00E8C893 /* Sources */,
 				D2932D6C1CB298AB00E8C893 /* Frameworks */,
 				D2932D6D1CB298AB00E8C893 /* Resources */,
-				5F9C921E1CB2E59A00928048 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -249,6 +233,7 @@
 				5F9C92221CB308C100928048 /* City.swift in Sources */,
 				5F9C92241CB308FB00928048 /* Weather.swift in Sources */,
 				5F9C921C1CB2E1F400928048 /* WeatherKitAgent.swift in Sources */,
+				D27AC4091CB32DE400684C22 /* WeatherListItem.swift in Sources */,
 				5F9C92261CB309D700928048 /* Wind.swift in Sources */,
 				5F9C92281CB309FC00928048 /* Environment.swift in Sources */,
 			);
@@ -372,11 +357,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(SRCROOT)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SGWeatherKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -395,11 +376,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(SRCROOT)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SGWeatherKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -412,7 +389,7 @@
 		D2932D7D1CB298AB00E8C893 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/**";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = SGWeatherKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codaitpartners.SGWeatherKitTests;
@@ -423,7 +400,7 @@
 		D2932D7E1CB298AB00E8C893 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/**";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = SGWeatherKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codaitpartners.SGWeatherKitTests;

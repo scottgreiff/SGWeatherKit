@@ -14,23 +14,24 @@ import CoreLocation
  
  The agent needs to be initialized with an API key that can be obtained from openweathermap.org.
  */
+
 public final class WeatherKitAgent {
-    
+
     // MARK: Properties 
-    
+
     /// The API key used to make weather service calls
     public let apiKey: String
-    
+
     public var apiVersion: String {
         return Const.apiVersion
     }
-    
+
     static let basePath = "http://api.openweathermap.org/data/"
-    
+
     public enum Result {
         case Success(NSURLResponse!, City!)
         case Error(NSURLResponse!, NSError!)
-        
+
         public func data() -> City? {
             switch self {
             case .Success(_, let city):
@@ -39,7 +40,7 @@ public final class WeatherKitAgent {
                 return nil
             }
         }
-        
+
         public func response() -> NSURLResponse? {
             switch self {
             case .Success(let response, _):
@@ -48,7 +49,7 @@ public final class WeatherKitAgent {
                 return response
             }
         }
-        
+
         public func error() -> NSError? {
             switch self {
             case .Success(_, _):
@@ -58,20 +59,20 @@ public final class WeatherKitAgent {
             }
         }
     }
-    
+
     private struct Const {
         static let basePath = "http://api.openweathermap.org/data/"
         static let apiVersion = "2.5"
     }
-    
+
     // MARK: Initialization
-    
+
     public init(apiKey: String) {
         self.apiKey = apiKey
     }
-    
+
     // MARK: Get current weather data
-    
+
     /**
      Gets the current weather conditions given the location in the form of CLLocationCoordiate2D
      
@@ -81,9 +82,9 @@ public final class WeatherKitAgent {
         let coordinateString = "lat=\(coordinate.latitude)&lon=\(coordinate.longitude)"
         call("/weather?\(coordinateString)", callback: callback)
     }
-    
+
     // MARK: Get daily forecast
-    
+
     /**
      Gets the weather forecast given the location in the form of CLLocationCoordiate2D
      
@@ -92,15 +93,16 @@ public final class WeatherKitAgent {
     public func dailyForecast(coordinate: CLLocationCoordinate2D, callback: (Result) -> ()) {
         call("/forecast/daily?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)", callback: callback)
     }
-    
+
     // MARK: Call openweather.org API
-    
+
     private func call(method: String, callback: (Result) -> ()) {
         let url = Const.basePath + Const.apiVersion + method + "&APPID=\(apiKey)"
         let request = NSURLRequest(URL: NSURL(string: url)!)
         let currentQueue = NSOperationQueue.currentQueue()
 
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
             var error: NSError? = error
             let dictionary: NSDictionary?
             var city: City?
@@ -111,9 +113,10 @@ public final class WeatherKitAgent {
                     city = City.parseFromDictionary(dictionary as! Dictionary<String, AnyObject>)
                 } catch let e as NSError {
                     error = e
+                } catch {
                 }
             }
-            
+
             currentQueue?.addOperationWithBlock {
                 var result = Result.Success(response, city)
                 if error != nil {
