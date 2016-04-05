@@ -9,12 +9,12 @@
 import Foundation
 
 public class WeatherListItem {
-    var weather: Weather!
-    var environment: Environment!
-    var wind: Wind!
-    var sunrise_time: NSDate?
-    var sunset_time: NSDate?
-    var forecastDate: NSDate!
+    public var weather: Weather!
+    public var environment: Environment!
+    public var wind: Wind!
+    public var sunrise_time: NSDate?
+    public var sunset_time: NSDate?
+    public var forecastDate: NSDate!
 
     init(weather: Weather, environment: Environment, wind: Wind, sunriseTime: NSDate?, sunsetTime: NSDate?, forecastDate: NSDate) {
         self.weather = weather

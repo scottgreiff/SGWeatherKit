@@ -9,10 +9,10 @@
 import Foundation
 
 public class Weather {
-    var id: Int!
-    var main: String!
-    var description: String!
-    var icon: String!
+    public var id: Int!
+    public var main: String!
+    public var description: String!
+    public var icon: String!
 
     //        Day	Night
     //        01d.png  	01n.png  	clear sky

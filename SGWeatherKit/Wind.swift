@@ -9,8 +9,8 @@
 import Foundation
 
 public class Wind {
-    var speed: Double!
-    var deg: Double!
+    public var speed: Double!
+    public var deg: Double!
 
     init(speed: Double, deg: Double) {
         self.speed = speed;

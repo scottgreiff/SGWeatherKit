@@ -9,11 +9,11 @@
 import Foundation
 
 public class Environment {
-    var humidity: Double!
-    var pressure: Double!
-    var temp: Double!
-    var temp_max: Double!
-    var temp_min: Double!
+    public var humidity: Double!
+    public var pressure: Double!
+    public var temp: Double!
+    public var temp_max: Double!
+    public var temp_min: Double!
 
     init(humidity: Double, pressure: Double, temp: Double, temp_max: Double, temp_min: Double) {
         self.humidity = humidity
