@@ -17,6 +17,8 @@ public class City {
     init(name: String, lat: Double, lon: Double, weatherList: [WeatherListItem]) {
         self.name = name
         self.weatherList = weatherList
+        self.lat = lat
+        self.lon = lon
     }
 }
 
