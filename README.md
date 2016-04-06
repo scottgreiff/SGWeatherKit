@@ -2,13 +2,13 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-*A weather service interface for iOS projects*
+*A weather service interface for iOS projects using openweathermap.org*
 
 ## About
 
-This library aims to do the following:
+This Swift-based library aims to do the following:
 
-* Provide CLLocation-based an interface to weather information provided by openweathermap.org
+* Provide CLLocation-based interface to weather information provided by openweathermap.org
 
 For detailed information on the different api calls, check out the official page [here](http://openweathermap.org).
 
@@ -26,7 +26,11 @@ For detailed information on the different api calls, check out the official page
 github "scottgreiff/SGWeatherKit"
 ````
 
-## Documentation
+## Documentation / Getting Started
+
+````swift
+import SGWeatherKit
+````
 
 To get the current weather conditions for a specific location:
 
@@ -48,11 +52,6 @@ agent.dailyForecast(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.9
 }
 ```
 
-## Getting Started
-
-````swift
-import SGWeatherKit
-````
 
 ## Credits
 
