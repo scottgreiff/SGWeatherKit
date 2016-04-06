@@ -8,11 +8,19 @@
 
 import Foundation
 
+/**
+    A City object is the wrapper of a city's current conditions and multi-day forecast.
+ */
 public class City {
+    
+    // MARK: Properties
+
     public var name: String!
     public var weatherList: [WeatherListItem]?
     public var lat: Double!
     public var lon: Double!
+
+    // MARK: Methods
 
     init(name: String, lat: Double, lon: Double, weatherList: [WeatherListItem]) {
         self.name = name
@@ -23,7 +31,7 @@ public class City {
 }
 
 extension City {
-    class func parseFromDictionary(dict: Dictionary<String, AnyObject>) throws -> City {
+    internal class func parseFromDictionary(dict: Dictionary<String, AnyObject>) throws -> City {
         var weatherList: [WeatherListItem] = [WeatherListItem]()
         var name: String!
         var lat: Double!
@@ -38,7 +46,6 @@ extension City {
             }
 
             // create singular weather list item
-            
             let listItem = try WeatherListItem.parseFromDictionary(dict)
             weatherList.append(listItem)
 
@@ -50,7 +57,7 @@ extension City {
                 lon = coords["lon"] as? Double
             }
 
-            // iterate list items
+            // iterate list items to create multiple weather list items
             if let weatherArray = dict["list"] as? Array<Dictionary<String, AnyObject>> {
                 for weatherNode in weatherArray {
                     let listItem = try WeatherListItem.parseFromDictionary(weatherNode)
@@ -59,10 +66,10 @@ extension City {
             }
         }
         
-        guard let _ = name else { throw ParseError.MissingDictionaryElement }
-        guard let _ = lat else { throw ParseError.MissingDictionaryElement }
-        guard let _ = lon else { throw ParseError.MissingDictionaryElement }
-        guard weatherList.count > 0 else { throw ParseError.MissingDictionaryElement }
+        guard let _ = name else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
+        guard let _ = lat else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
+        guard let _ = lon else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
+        guard weatherList.count > 0 else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
         
         return City(name: name, lat: lat, lon: lon, weatherList: weatherList)
     }

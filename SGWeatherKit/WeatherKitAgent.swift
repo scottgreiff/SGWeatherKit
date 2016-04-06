@@ -28,6 +28,11 @@ public final class WeatherKitAgent {
 
     static let basePath = "http://api.openweathermap.org/data/"
 
+    
+    public enum ParseError : ErrorType {
+        case MissingDictionaryElement
+    }
+
     public enum Result {
         case Success(NSURLResponse!, City!)
         case Error(NSURLResponse!, NSError!)
@@ -76,7 +81,8 @@ public final class WeatherKitAgent {
     /**
      Gets the current weather conditions given the location in the form of CLLocationCoordiate2D
      
-     :param: coordinate CLLocationCoordinate2D
+     - parameter coordinate:    CLLocationCoordinate2D for which you want to get the current weather conditions
+     - returns:                 The Result object that contains data, response, and error objects
      */
     public func currentWeather(coordinate: CLLocationCoordinate2D, callback: (Result) -> ()) {
         let coordinateString = "lat=\(coordinate.latitude)&lon=\(coordinate.longitude)"
@@ -86,9 +92,10 @@ public final class WeatherKitAgent {
     // MARK: Get daily forecast
 
     /**
-     Gets the weather forecast given the location in the form of CLLocationCoordiate2D
+     Gets the multi-day weather forecast given the location in the form of CLLocationCoordiate2D
      
-     :param: coordinate CLLocationCoordinate2D
+     - parameter coordinate:    CLLocationCoordinate2D for which you want to get the extended weather forecast
+     - returns:                 The Result object that contains data, response, and error objects
      */
     public func dailyForecast(coordinate: CLLocationCoordinate2D, callback: (Result) -> ()) {
         call("/forecast/daily?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)", callback: callback)
@@ -127,8 +134,3 @@ public final class WeatherKitAgent {
         task.resume()
     }
 }
-
-public enum ParseError : ErrorType {
-    case MissingDictionaryElement
-}
-

@@ -65,7 +65,7 @@ class SGWeatherKitTests: XCTestCase {
             let error = result.error()
             XCTAssertNotNil(error)
             XCTAssertNil(result.data())
-            XCTAssert(error!.domain == "SGWeatherKit.ParseError")
+            XCTAssert(error!.domain == "SGWeatherKit.WeatherKitAgent.ParseError")
             expectation.fulfill()
         }
         
@@ -78,10 +78,10 @@ class SGWeatherKitTests: XCTestCase {
         do {
             let newCity = try City.parseFromDictionary(badData)
             XCTAssertNil(newCity)
-        } catch ParseError.MissingDictionaryElement {
+        } catch WeatherKitAgent.ParseError.MissingDictionaryElement {
             XCTAssert(true)
         } catch {
-            XCTAssert(false)
+            XCTAssert(false, "Expecting a specific ParseError.MissingDictionaryElement type of error")
         }
     }
     
@@ -91,10 +91,10 @@ class SGWeatherKitTests: XCTestCase {
         do {
             let newCity = try City.parseFromDictionary(badData)
             XCTAssertNil(newCity)
-        } catch ParseError.MissingDictionaryElement {
+        } catch WeatherKitAgent.ParseError.MissingDictionaryElement {
             XCTAssert(true)
         } catch {
-            XCTAssert(false)
+            XCTAssert(false, "Expecting a specific ParseError.MissingDictionaryElement type of error")
         }
     }
     

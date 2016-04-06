@@ -104,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				5F9C92201CB3088600928048 /* Model */,
+				5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */,
 				D2932D681CB298AB00E8C893 /* SGWeatherKit.h */,
 				D2932D6A1CB298AB00E8C893 /* Info.plist */,
-				5F9C921B1CB2E1F400928048 /* WeatherKitAgent.swift */,
 			);
 			name = Source;
 			path = SGWeatherKit;

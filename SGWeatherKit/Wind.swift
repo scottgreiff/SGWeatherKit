@@ -8,9 +8,17 @@
 
 import Foundation
 
+/**
+ A Wind item has specific detail about winds for a Weather condition item.
+ */
 public class Wind {
+    
+    // MARK: Properties
+    
     public var speed: Double!
     public var deg: Double!
+
+    // MARK: Methods
 
     init(speed: Double, deg: Double) {
         self.speed = speed;
@@ -19,7 +27,7 @@ public class Wind {
 }
 
 extension Wind {
-    class func parseFromDictionary(dict: [String:AnyObject]) -> Wind {
+    internal class func parseFromDictionary(dict: [String:AnyObject]) -> Wind {
         let speed = dict["speed"]! as! Double
         let deg = dict["deg"]! as! Double
 

@@ -8,13 +8,21 @@
 
 import Foundation
 
+/**
+ A Weather List Item object is the wrapper for a single set of conditions
+ */
 public class WeatherListItem {
+
+    // MARK: Properties
+    
     public var weather: Weather!
     public var environment: Environment!
     public var wind: Wind!
     public var sunrise_time: NSDate?
     public var sunset_time: NSDate?
     public var forecastDate: NSDate!
+
+    // MARK: Methods
 
     init(weather: Weather, environment: Environment, wind: Wind, sunriseTime: NSDate?, sunsetTime: NSDate?, forecastDate: NSDate) {
         self.weather = weather
@@ -27,7 +35,7 @@ public class WeatherListItem {
 }
 
 extension WeatherListItem {
-    class func parseFromDictionary(dict: Dictionary<String, AnyObject>) throws -> WeatherListItem {
+    internal class func parseFromDictionary(dict: Dictionary<String, AnyObject>) throws -> WeatherListItem {
         var weather: Weather!
         var wind: Wind!
         var environment: Environment!
@@ -72,10 +80,10 @@ extension WeatherListItem {
             forecastDate = NSDate(timeIntervalSince1970: fDate)
         }
 
-        guard let _ = weather else { throw ParseError.MissingDictionaryElement }
-        guard let _ = wind else { throw ParseError.MissingDictionaryElement }
-        guard let _ = environment else { throw ParseError.MissingDictionaryElement }
-        guard let _ = forecastDate else { throw ParseError.MissingDictionaryElement }
+        guard let _ = weather else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
+        guard let _ = wind else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
+        guard let _ = environment else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
+        guard let _ = forecastDate else { throw WeatherKitAgent.ParseError.MissingDictionaryElement }
 
         return WeatherListItem(weather: weather, environment: environment, wind: wind, sunriseTime: sunrise_time, sunsetTime: sunset_time, forecastDate: forecastDate)
     }
