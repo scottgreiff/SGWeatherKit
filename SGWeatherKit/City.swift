@@ -19,7 +19,7 @@ public class City {
 }
 
 extension City {
-    class func parseFromDictionary(dict: Dictionary<String, AnyObject>) -> City {
+    class func parseFromDictionary(dict: Dictionary<String, AnyObject>) throws -> City {
         var weatherList: [WeatherListItem] = [WeatherListItem]()
         var name: String!
 
@@ -27,18 +27,25 @@ extension City {
             name = cityName
 
             // create singular weather list item
-            weatherList.append(WeatherListItem.parseFromDictionary(dict))
+            
+            let listItem = try WeatherListItem.parseFromDictionary(dict)
+            weatherList.append(listItem)
+
         } else if let cityDict = dict["city"] as? Dictionary<String, AnyObject> {
             name = cityDict["name"] as? String
 
             // iterate list items
             if let weatherArray = dict["list"] as? Array<Dictionary<String, AnyObject>> {
                 for weatherNode in weatherArray {
-                    weatherList.append(WeatherListItem.parseFromDictionary(weatherNode))
+                    let listItem = try WeatherListItem.parseFromDictionary(weatherNode)
+                    weatherList.append(listItem)
                 }
             }
         }
-
+        
+        guard let _ = name else { throw ParseError.MissingDictionaryElement }
+        guard weatherList.count > 0 else { throw ParseError.MissingDictionaryElement }
+        
         return City(name: name, weatherList: weatherList)
     }
 }

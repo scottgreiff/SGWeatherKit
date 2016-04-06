@@ -27,7 +27,7 @@ public class WeatherListItem {
 }
 
 extension WeatherListItem {
-    class func parseFromDictionary(dict: Dictionary<String, AnyObject>) -> WeatherListItem {
+    class func parseFromDictionary(dict: Dictionary<String, AnyObject>) throws -> WeatherListItem {
         var weather: Weather!
         var wind: Wind!
         var environment: Environment!
@@ -68,9 +68,14 @@ extension WeatherListItem {
             }
         }
 
-        if let fDate = dict["dt"]! as? Double {
+        if let fDate = dict["dt"] as? Double {
             forecastDate = NSDate(timeIntervalSince1970: fDate)
         }
+
+        guard let _ = weather else { throw ParseError.MissingDictionaryElement }
+        guard let _ = wind else { throw ParseError.MissingDictionaryElement }
+        guard let _ = environment else { throw ParseError.MissingDictionaryElement }
+        guard let _ = forecastDate else { throw ParseError.MissingDictionaryElement }
 
         return WeatherListItem(weather: weather, environment: environment, wind: wind, sunriseTime: sunrise_time, sunsetTime: sunset_time, forecastDate: forecastDate)
     }

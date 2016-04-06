@@ -110,10 +110,9 @@ public final class WeatherKitAgent {
             if let data = data {
                 do {
                     dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as? NSDictionary
-                    city = City.parseFromDictionary(dictionary as! Dictionary<String, AnyObject>)
+                    city = try City.parseFromDictionary(dictionary as! Dictionary<String, AnyObject>)
                 } catch let e as NSError {
                     error = e
-                } catch {
                 }
             }
 
@@ -128,3 +127,8 @@ public final class WeatherKitAgent {
         task.resume()
     }
 }
+
+public enum ParseError : ErrorType {
+    case MissingDictionaryElement
+}
+

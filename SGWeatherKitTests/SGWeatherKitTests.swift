@@ -53,6 +53,48 @@ class SGWeatherKitTests: XCTestCase {
         
         waitForExpectationsWithTimeout(10, handler: nil)
     }
+
+    func testBadLocationShouldReturnError() {
+        XCTAssertNotNil(self.agent)
+        
+        let expectation = expectationWithDescription("currentWeatherByCoordinate")
+        
+        agent.currentWeather(CLLocationCoordinate2D(latitude: -100000, longitude: -10000)) { result in
+            let error = result.error()
+            XCTAssertNotNil(error)
+            XCTAssertNil(result.data())
+            XCTAssert(error!.domain == "SGWeatherKit.ParseError")
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(10, handler: nil)
+    }
+
+    func testForEmptyResult() {
+        let badData = Dictionary<String, AnyObject>() //  ["name": "SomePlace"]
+        
+        do {
+            let newCity = try City.parseFromDictionary(badData)
+            XCTAssertNil(newCity)
+        } catch ParseError.MissingDictionaryElement {
+            XCTAssert(true)
+        } catch {
+            XCTAssert(false)
+        }
+    }
+    
+    func testForEmptyWeatherInfoResult() {
+        let badData = ["name": "SomePlace"]
+        
+        do {
+            let newCity = try City.parseFromDictionary(badData)
+            XCTAssertNil(newCity)
+        } catch ParseError.MissingDictionaryElement {
+            XCTAssert(true)
+        } catch {
+            XCTAssert(false)
+        }
+    }
     
     func testGetForecastForLatLon() {
         XCTAssertNotNil(self.agent)
