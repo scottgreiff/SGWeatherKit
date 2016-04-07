@@ -64,7 +64,6 @@ class SGWeatherKitTests: XCTestCase {
         agent.currentWeather(CLLocationCoordinate2D(latitude: -100000, longitude: -10000)) { result in
             let error = result.error()
             XCTAssertNotNil(error)
-            XCTAssertNil(result.data())
             XCTAssert(error!.domain == "SGWeatherKit.WeatherKitAgent.ParseError")
             expectation.fulfill()
         }
@@ -110,6 +109,24 @@ class SGWeatherKitTests: XCTestCase {
             XCTAssertNotNil(city)
             XCTAssertEqual("http://api.openweathermap.org/data/2.5/forecast/daily?lat=39.961176&lon=-82.998794&APPID=195ca018929c41a89f286e0910a5da77&units=imperial", url!)
             XCTAssertNotNil(city.name as String)
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(10, handler: nil)
+    }
+
+    func testGetCitiesInCycleForLatLon() {
+        XCTAssertNotNil(self.agent)
+        
+        let expectation = expectationWithDescription("dailyForecastByCoordinate")
+        
+        agent.citiesInCycle(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794), numberOfCities: 10) { result in
+            let url = result.response()?.URL!.absoluteString
+            let cities: [City] = result.data()!
+            XCTAssertNotNil(url)
+            XCTAssertNotNil(cities)
+            XCTAssertEqual("http://api.openweathermap.org/data/2.5/find?lat=39.961176&lon=-82.998794&cnt=10&APPID=195ca018929c41a89f286e0910a5da77&units=imperial", url!)
+            XCTAssertNotNil(cities[0].name as String)
             expectation.fulfill()
         }
         

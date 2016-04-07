@@ -52,6 +52,15 @@ agent.dailyForecast(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.9
 }
 ```
 
+To get conditions for a specified number of cities near a specific location:
+
+```swift
+let agent = WeatherKitAgent(apiKey: "your_api_key")
+agent.citiesInCycle(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794), numberOfCities: 10) { result in
+  let city: City = result.data()!
+	// Do something with the forecast dictionary here
+}
+```
 
 ## Credits
 

@@ -67,11 +67,11 @@ extension WeatherListItem {
 
         // Sys
         if let sysDict = dict["sys"] as? Dictionary<String, AnyObject> {
-            if let sunriseTimestamp = sysDict["sunrise"]! as? Double {
+            if let sunriseTimestamp = sysDict["sunrise"] as? Double {
                 sunrise_time = NSDate(timeIntervalSince1970: sunriseTimestamp)
             }
 
-            if let sunsetTimestamp = sysDict["sunset"]! as? Double {
+            if let sunsetTimestamp = sysDict["sunset"] as? Double {
                 sunset_time = NSDate(timeIntervalSince1970: sunsetTimestamp)
             }
         }
