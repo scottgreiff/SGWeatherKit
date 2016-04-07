@@ -37,8 +37,9 @@ To get the current weather conditions for a specific location:
 ```swift
 let agent = WeatherKitAgent(apiKey: "your_api_key")
 agent.currentWeather(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794)) { result in
-  let city: City = result.data()!
-	// Do something with the current weather forecast city object here
+  if let city: City = result.data() {
+    // Do something with the current weather forecast city object here
+  }
 }
 ```
 
@@ -47,8 +48,9 @@ To get the weather forecast for a specific location:
 ```swift
 let agent = WeatherKitAgent(apiKey: "your_api_key")
 agent.dailyForecast(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794)) { result in
-  let city: City = result.data()!
-	// Do something with the forecast dictionary here
+  if let city: City = result.data() {
+    // Do something with the forecast dictionary here
+  }
 }
 ```
 
@@ -57,8 +59,9 @@ To get conditions for a specified number of cities near a specific location:
 ```swift
 let agent = WeatherKitAgent(apiKey: "your_api_key")
 agent.citiesInCycle(CLLocationCoordinate2D(latitude: 39.961176, longitude: -82.998794), numberOfCities: 10) { result in
-  let city: City = result.data()!
-	// Do something with the forecast dictionary here
+  if let city: [City] = result.data() {
+    // Do something with the city forecast dictionary here
+  }
 }
 ```
 
