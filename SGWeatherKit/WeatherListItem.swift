@@ -55,7 +55,9 @@ extension WeatherListItem {
         if let windDict = dict["wind"] as? Dictionary<String, AnyObject> {
             wind = Wind.parseFromDictionary(windDict)
         } else if let speed = dict["speed"] as? Double {
-            wind = Wind.parseFromDictionary(["speed": speed, "deg": (dict["deg"] as? Double)!])
+            if let degree = dict["deg"] as? Double {
+                wind = Wind.parseFromDictionary(["speed": speed, "deg": degree])
+            }
         }
 
         // Environment (main)
